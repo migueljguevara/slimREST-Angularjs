@@ -8,7 +8,7 @@ $app->group('/user/', function () {
                    ->write('Hello Users');
     });
     
-    $this->get('getAll', function ($req, $res, $args) {
+    $this->get('', function ($req, $res, $args) {
         $um = new UserModel(); 
         
         return $res
@@ -21,7 +21,7 @@ $app->group('/user/', function () {
         );
     });
     
-    $this->get('get/{id}', function ($req, $res, $args) {
+    $this->get('{id}', function ($req, $res, $args) {
         $um = new UserModel();
         
         return $res
@@ -34,7 +34,7 @@ $app->group('/user/', function () {
         );
     });
     
-    $this->post('save', function ($req, $res) {
+    $this->post('', function ($req, $res) {
         $um = new UserModel();
         
         return $res
@@ -42,14 +42,29 @@ $app->group('/user/', function () {
            ->getBody()
            ->write(
             json_encode(
-                $um->InsertOrUpdate(
+                $um->Insert(
+                    $req->getParsedBody()
+                )
+            )
+        );
+    });
+
+    $this->put('', function ($req, $res) {
+        $um = new UserModel();
+        
+        return $res
+           ->withHeader('Content-type', 'application/json')
+           ->getBody()
+           ->write(
+            json_encode(
+                $um->Update(
                     $req->getParsedBody()
                 )
             )
         );
     });
     
-    $this->post('delete/{id}', function ($req, $res, $args) {
+    $this->delete('{id}', function ($req, $res, $args) {
         $um = new UserModel();
         
         return $res

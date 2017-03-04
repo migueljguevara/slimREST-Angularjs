@@ -48,8 +48,7 @@ class UserModel
 
 			$this->response->setResponse(true);
             $this->response->result = $stm->fetch();
-            
-            return $this->response;
+            return $this->response->result;
 		}
 		catch(Exception $e)
 		{
@@ -58,12 +57,36 @@ class UserModel
 		}  
     }
     
-    public function InsertOrUpdate($data)
+    public function Insert($data)
+    {
+        try {
+            $sql = "INSERT INTO $this->table
+                        (tipo, nombre, descripcion, activo)
+                        VALUES (?,?,?,?)";
+                    
+            $this->db->prepare($sql)
+                     ->execute(
+                        array(
+                            $data['tipo'], 
+                            $data['nombre'],
+                            $data['descripcion'],
+                            $data['activo']
+                        )
+                    ); 
+                
+                
+            $this->response->setResponse(true);
+            return $this->response;
+            
+        } catch (Exception $e) {
+            $this->response->setResponse(false, $e->getMessage());
+        }
+    }
+
+    public function Update($data)
     {
 		try 
 		{
-            if(isset($data['id']))
-            {
                 $sql = "UPDATE $this->table SET 
                             Nombre          = ?, 
                             Apellido        = ?,
@@ -87,30 +110,9 @@ class UserModel
                             $data['id']
                         )
                     );
-            }
-            else
-            {
-                $sql = "INSERT INTO $this->table
-                            (Nombre, Apellido, Correo, Sexo, Sueldo, Profesion_id, FechaNacimiento, FechaRegistro)
-                            VALUES (?,?,?,?,?,?,?,?)";
-                
-                $this->db->prepare($sql)
-                     ->execute(
-                        array(
-                            $data['Nombre'], 
-                            $data['Apellido'],
-                            $data['Correo'],
-                            $data['Sexo'],
-                            $data['Sueldo'],
-                            $data['Profesion_id'],
-                            $data['FechaNacimiento'],
-                            date('Y-m-d')
-                        )
-                    ); 
-            }
-            
-			$this->response->setResponse(true);
+            $this->response->setResponse(true);
             return $this->response;
+        
 		}catch (Exception $e) 
 		{
             $this->response->setResponse(false, $e->getMessage());
@@ -121,8 +123,7 @@ class UserModel
     {
 		try 
 		{
-			$stm = $this->db
-			            ->prepare("DELETE FROM $this->table WHERE id = ?");			          
+			$stm = $this->db->prepare("DELETE FROM $this->table WHERE id = ?");			          
 
 			$stm->execute(array($id));
             
