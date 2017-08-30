@@ -1,5 +1,11 @@
 version: '2'
 services:
+  #Uncoment the first time
+  #dependencias:
+  #  image: composer
+  #  command: ["install"]
+  #  volumes:
+  #   - .:/app
   phpservice:
     container_name: ${NAME_APP_CONTAINER}
     depends_on:
