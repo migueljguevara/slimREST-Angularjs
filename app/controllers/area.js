@@ -20,37 +20,33 @@ angular.module('appArea', [
 .controller('areaCtrl', ['$scope', 'areaService', '$http', function ($scope, areaService, $http) 
 {
     function loadAreas() {
-        areaService.getAreas().then(function (data) { $scope.areas = data; });
+        areaService.getAreas().then(function (data) { $scope.usuarios = data; });
     }
     loadAreas();
-    var areaData="";
+    var datos="";
     $scope.edit = false;
-    $scope.cargaArea = function () {
+    $scope.cargar = function () {
         var datos = {
-            AreNombre: $scope.nombre,
-            AreAbrev: $scope.abreviatura,
-            AreComentarios: $scope.comentario
+            nombre: $scope.nombre,
+            id: $scope.id
         };
         areaService.setArea(datos).then(function (data) { loadAreas(); });
     };
-    $scope.delArea = function (id) {
+    $scope.delete = function (id) {
         areaService.delArea(id).then(function (data) { loadAreas(); });
     };
-    $scope.editArea = function (area) {
-        $scope.nombre = area.AreNombre;
-        $scope.abreviatura = area.AreAbrev;
-        $scope.comentario = area.AreComentarios;
+    $scope.editar = function (area) {
+        $scope.nombre = area.nombre;
+        $scope.id = area.id;
         $scope.edit = true;
-        areaData = area;
+        datos = area;
     };
     $scope.actualizar = function () {
-        areaData.AreNombre = $scope.nombre;
-        areaData.AreAbrev = $scope.abreviatura;
-        areaData.AreComentarios = $scope.comentario;
-        areaService.putArea(areaData).then(function (data) { loadAreas(); });
+        datos.nombre = $scope.nombre;
+        datos.id = $scope.id;
+        areaService.putArea(datos).then(function (data) { loadAreas(); });
         $scope.nombre = "";
-        $scope.abreviatura = "";
-        $scope.comentario = "";
+        $scope.id = "";
         $scope.edit = false;
     }
 }]);

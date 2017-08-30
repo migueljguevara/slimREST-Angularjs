@@ -61,16 +61,14 @@ class UserModel
     {
         try {
             $sql = "INSERT INTO $this->table
-                        (tipo, nombre, descripcion, activo)
-                        VALUES (?,?,?,?)";
+                        (id, nombre)
+                        VALUES (?,?)";
                     
             $this->db->prepare($sql)
                      ->execute(
                         array(
-                            $data['tipo'], 
-                            $data['nombre'],
-                            $data['descripcion'],
-                            $data['activo']
+                            $data['id'], 
+                            $data['nombre']
                         )
                     ); 
                 
@@ -88,25 +86,15 @@ class UserModel
 		try 
 		{
                 $sql = "UPDATE $this->table SET 
-                            Nombre          = ?, 
-                            Apellido        = ?,
-                            Correo          = ?,
-                            Sexo            = ?,
-                            Sueldo          = ?,
-                            Profesion_id    = ?,
-                            FechaNacimiento = ?
+                            id          = ?, 
+                            nombre        = ?
                         WHERE id = ?";
                 
                 $this->db->prepare($sql)
                      ->execute(
                         array(
-                            $data['Nombre'], 
-                            $data['Apellido'],
-                            $data['Correo'],
-                            $data['Sexo'],
-                            $data['Sueldo'],
-                            $data['Profesion_id'],
-                            $data['FechaNacimiento'],
+                            $data['id'],
+                            $data['nombre'],
                             $data['id']
                         )
                     );
