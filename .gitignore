@@ -1,4 +1,5 @@
 /vendor/
-/logs/*
-/app/bower_components/*
+/logs/
+/data/
+/app/bower_components/
 !/logs/README.md

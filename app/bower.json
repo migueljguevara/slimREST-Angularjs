@@ -18,7 +18,7 @@
     "tests"
   ],
   "dependencies": {
-    "jquery-3.1.1.min": "https://code.jquery.com/jquery-3.1.1.min.js",
+    "jquery": "^3.1.1",
     "bootstrap": "^3.3.7",
     "angular": "angularjs#^1.6.2",
     "oclazyload": "https://github.com/ocombe/ocLazyLoad.git#^1.1.0",
