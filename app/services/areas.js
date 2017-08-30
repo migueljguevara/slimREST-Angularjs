@@ -4,7 +4,7 @@ angular.module('areas', [])
   this.getAreas = function(){ 
    var deferred = $q.defer();
      //$http.get(urlBase+'data/users.json').then(
-   $http.get(urlBase + 'api/tblAreas').then(
+   $http.get(urlBase + 'user/').then(
        function success(data) { 
           deferred.resolve(data.data);
        }, function error(data) {

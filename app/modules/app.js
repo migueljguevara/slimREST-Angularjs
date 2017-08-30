@@ -1,6 +1,6 @@
 angular.module("app", ["ui.router", "oc.lazyLoad"])
 //.constant('urlBase', "http://localhost:8081/")
-.constant('urlBase', "http://localhost/webapp/public/index.php")
+.constant('urlBase', "http://localhost/public/index.php/")
 .config(function ($stateProvider) {
 
 	$stateProvider

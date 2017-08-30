@@ -7,7 +7,7 @@ use Slim_app\Lib\Response;
 class UserModel
 {
     private $db;
-    private $table = 'oficios';
+    private $table = 'users';
     private $response;
     
     public function __CONSTRUCT()
