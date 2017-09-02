@@ -34,6 +34,7 @@ angular.module('appArea', [
     };
     $scope.delete = function (id) {
         areaService.delArea(id).then(function (data) { loadAreas(); });
+        $scope.edit = false;
     };
     $scope.editar = function (area) {
         $scope.nombre = area.nombre;
