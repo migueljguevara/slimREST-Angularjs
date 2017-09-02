@@ -1,0 +1,5 @@
+USE mydb;
+CREATE TABLE `mydb`.`users` (
+  `id` INT NOT NULL,
+  `nombre` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
