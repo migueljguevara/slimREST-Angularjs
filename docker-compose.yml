@@ -1,5 +1,11 @@
 version: '2'
 services:
+  bowerService:
+    container_name: bowerContainer
+    image: digitallyseamless/nodejs-bower-grunt
+    volumes:
+     - ./app:/data
+    command: ["bower", "install"]
   Cservice:
     container_name: composerContainer
     image: composer
