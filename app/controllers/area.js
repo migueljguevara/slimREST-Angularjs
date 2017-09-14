@@ -30,6 +30,8 @@ angular.module('appArea', [
             nombre: $scope.nombre,
             id: $scope.id
         };
+        $scope.nombre = "";
+        $scope.id = "";
         areaService.setArea(datos).then(function (data) { loadAreas(); });
     };
     $scope.delete = function (id) {
